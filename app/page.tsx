@@ -18,6 +18,7 @@ type Content = {
   workLead: string;
   works: string[];
   valuesTitle: string;
+  valuesLead: string;
   values: { title: string; body: string }[];
   footerTitle: string;
   footerBody: string;
@@ -53,6 +54,7 @@ const content: Record<Locale, Content> = {
       "در نسخه بعدی، پروژه های واقعی اولین دیتا با تصویر، توضیح، تکنولوژی و نتیجه هر پروژه در این بخش قرار می گیرد.",
     works: ["پلتفرم سازمانی", "وب سایت برند", "اپلیکیشن موبایل", "کمپین دیجیتال"],
     valuesTitle: "رویکرد ما",
+    valuesLead: "یک فرآیند ساده، دقیق و نتیجه محور برای تبدیل ایده به محصول قابل ارائه.",
     values: [
       {
         title: "شفاف",
@@ -100,6 +102,7 @@ const content: Record<Locale, Content> = {
       "In the next version, real Avvalin Data projects can be added here with visuals, context, technology, and measurable outcomes.",
     works: ["Enterprise Platform", "Brand Website", "Mobile Application", "Digital Campaign"],
     valuesTitle: "Our Approach",
+    valuesLead: "A simple, precise, outcome-driven process for turning ideas into launch-ready products.",
     values: [
       {
         title: "Clear",
@@ -164,10 +167,10 @@ export default function Home({ searchParams }: { searchParams?: { lang?: string 
           <div className="hero-copy">
             <p>{t.intro}</p>
             <div className="cta-row">
-              <a className="button primary" href="#تماس">
+              <a className="button primary" href={`#${t.nav[3]}`}>
                 {t.primaryCta}
               </a>
-              <a className="button" href="#خدمات">
+              <a className="button" href={`#${t.nav[0]}`}>
                 {t.secondaryCta}
               </a>
             </div>
@@ -199,7 +202,7 @@ export default function Home({ searchParams }: { searchParams?: { lang?: string 
           </div>
           <div>
             <p className="lead">{t.workLead}</p>
-            <div className="work-list" style={{ marginTop: 36 }}>
+            <div className="work-list work-list-spaced">
               {t.works.map((work, index) => (
                 <div className="work-item" key={work}>
                   <span>{String(index + 1).padStart(2, "0")}</span>
@@ -212,9 +215,9 @@ export default function Home({ searchParams }: { searchParams?: { lang?: string 
         </section>
 
         <section className="section" id={t.nav[2]}>
-          <div className="grid-two" style={{ marginBottom: 44 }}>
+          <div className="grid-two values-intro">
             <h2 className="section-title">{t.valuesTitle}</h2>
-            <p className="lead">{locale === "fa" ? "یک فرآیند ساده، دقیق و نتیجه محور برای تبدیل ایده به محصول قابل ارائه." : "A simple, precise, outcome-driven process for turning ideas into launch-ready products."}</p>
+            <p className="lead">{t.valuesLead}</p>
           </div>
           <div className="cards">
             {t.values.map((value) => (
